@@ -1,12 +1,16 @@
 #!/bin/bash
 
+sudo timedatectl set-timezone Europe/Zagreb
+
 sudo apt update && sudo apt upgrade -y
 
 sudo apt install \
 	ubuntu-drivers \
 	htop \
 	python3-pip \
-	python3-venv
+	python3-venv \
+	git \
+	vim
 
 sudo pip install -r requirements.txt
 
