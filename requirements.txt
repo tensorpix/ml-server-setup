@@ -1,0 +1,2 @@
+nvitop==1.*
+tensorboard==2.*
