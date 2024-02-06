@@ -15,7 +15,9 @@ sudo apt install \
 	git \
 	vim
 
-sudo pip install -r requirements.txt
+sudo pip install --no-cache-dir \
+	nvitop==1.* \
+	tensorboard==2.*
 
 # NVIDIA drivers
 # https://ubuntu.com/server/docs/nvidia-drivers-installation
@@ -52,3 +54,6 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
+
+
+echo "Please reboot the system to finish the setup script."
