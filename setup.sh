@@ -5,7 +5,7 @@ sudo timedatectl set-timezone Europe/Zagreb
 sudo apt update && sudo apt upgrade -y
 
 sudo apt install \
-	ubuntu-drivers \
+	ubuntu-drivers-common \
 	htop \
 	python3-pip \
 	python3-venv \
@@ -34,5 +34,8 @@ echo \
 sudo apt-get update
 
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-echo "Remember to add users to the 'docker' group!"
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+echo "Remember to add other users to the 'docker' group!"
