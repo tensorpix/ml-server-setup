@@ -6,16 +6,18 @@ SSH_PORT="22"
 
 sudo timedatectl set-timezone $TIMEZONE
 
-sudo apt update && sudo apt upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
-sudo apt install \
-	ubuntu-drivers-common \
-	htop \
-	python3-pip \
-	python3-venv \
-	git \
-	tmux \
-	vim
+sudo apt-get install -y \
+     ubuntu-drivers-common \
+     htop \
+     python3-pip \
+     python3-venv \
+     git \
+     tmux \
+     lm-sensors \
+     vim  \
+     && sudo apt-get clean
 
 sudo pip install --no-cache-dir \
 	nvitop==1.* \
@@ -24,7 +26,7 @@ sudo pip install --no-cache-dir \
 # NVIDIA drivers
 # https://ubuntu.com/server/docs/nvidia-drivers-installation
 sudo ubuntu-drivers install nvidia:$NVIDIA_VERSION-server
-sudo apt install -y nvidia-utils-$NVIDIA_VERSION-server
+sudo apt-get install -y nvidia-utils-$NVIDIA_VERSION-server
 
 # Docker + docker compose
 # https://docs.docker.com/engine/install/
