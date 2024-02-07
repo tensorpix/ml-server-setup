@@ -10,8 +10,9 @@ This is a script that can quickly get you up and running for running any ML or D
 - Installs NVIDIA container toolkit. This enables CUDA inside docker containers.
 - Installs Docker + Docker Compose
 - Installs tensorboard and nvitop
+- Adds basic UFW (Firewall) rules
 
-## Requirements
+## 📋 Requirements
 
 Your user must have sudo permissions to run the script.
 
