@@ -2,6 +2,7 @@
 
 TIMEZONE="Europe/Zagreb"
 NVIDIA_VERSION="535"
+SSH_PORT="22"
 
 sudo timedatectl set-timezone $TIMEZONE
 
@@ -13,6 +14,7 @@ sudo apt install \
 	python3-pip \
 	python3-venv \
 	git \
+	tmux \
 	vim
 
 sudo pip install --no-cache-dir \
@@ -25,6 +27,7 @@ sudo ubuntu-drivers install nvidia:$NVIDIA_VERSION-server
 sudo apt install -y nvidia-utils-$NVIDIA_VERSION-server
 
 # Docker + docker compose
+# https://docs.docker.com/engine/install/
 sudo apt-get -y install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
@@ -55,5 +58,18 @@ sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
 
+# Setup Firewall
+sudo ufw enable
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+sudo ufw allow $SSH_PORT
+
+# HTTP and HTTPS
+sudo ufw allow 80
+sudo ufw allow 443
+# FTP
+sudo ufw allow 20:21
+echo "UFW enabled. All ports besides $SSH_PORT, 80, 443, 20, and 21 have been restricted."
 
 echo "Please reboot the system to finish the setup script."
