@@ -3,6 +3,8 @@
 TIMEZONE="Europe/Zagreb"
 NVIDIA_VERSION="535"
 SSH_PORT="22"
+COMPANY_GROUP_GID=1004
+COMPANY_GROUP_NAME="tensorpix"
 
 sudo timedatectl set-timezone $TIMEZONE
 
@@ -73,5 +75,9 @@ sudo ufw allow 443
 # FTP
 sudo ufw allow 20:21
 echo "UFW enabled. All ports besides $SSH_PORT, 80, 443, 20, and 21 have been restricted."
+
+sudo groupadd -g $COMPANY_GROUP_GID $COMPANY_GROUP_NAME
+sudo usermod -aG $COMPANY_GROUP_NAME $USER
+echo "Created group $COMPANY_GROUP_NAME (gid=$COMPANY_GROUP_ID). User $USER added to group."
 
 echo "Please reboot the system to finish the setup script."
