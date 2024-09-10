@@ -55,7 +55,7 @@ usermod -aG docker $NEWUSER
 HOME_DIR="/home/$NEWUSER"
 mkdir -p $HOME_DIR/.ssh
 touch $HOME_DIR/.ssh/authorized_keys
-chown -R $NEWUSER:$NEWUSER $HOME_DIR
+chown -R $NEWUSER:$COMPANY_GROUP_NAME $HOME_DIR
 chmod 700 $HOME_DIR
 chmod 700 $HOME_DIR/.ssh
 chmod 600 $HOME_DIR/.ssh/authorized_keys
