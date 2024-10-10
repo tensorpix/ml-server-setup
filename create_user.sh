@@ -36,6 +36,12 @@ if ! getent group "$COMPANY_GROUP_NAME" >/dev/null; then
     groupadd -g $COMPANY_GROUP_GID $COMPANY_GROUP_NAME
 fi
 
+# Create user group if it doesn't exist
+if ! getent group "$NEWUSER" >/dev/null; then
+    echo "Creating group $NEWUSER"
+    groupadd $NEWUSER
+fi
+
 
 # Create user if it doesn't exist
 if id "$NEWUSER" >/dev/null 2>&1; then
@@ -47,6 +53,7 @@ fi
 
 
 # Add user groups
+usermod -aG $NEWUSER $NEWUSER
 usermod -aG $COMPANY_GROUP_NAME $NEWUSER
 usermod -aG docker $NEWUSER
 
